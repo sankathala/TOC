@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <string.h>
+
+void main() {
+    char s[100];
+    int i, flag, flag1, flag2;
+    int l;
+
+    printf("Enter a string to check: ");
+    scanf("%s", s);
+
+    l = strlen(s);
+    flag = 1;
+
+    for (i = 0; i < l; i++) {
+        if (s[i] != '0' && s[i] != '1') {
+            flag = 0;
+        }
+    }
+
+    if (flag != 1) {
+        printf("Invalid string: Contains characters other than '0' and '1'\n");
+    } else {
+        if (l % 2 != 0) { // If string length is odd
+            printf("Valid string: Does not satisfy the condition 0^n1^n\n");
+            printf("Valid string: Not Accepted\n");
+        } else {
+            // To check the first half contains 0s
+            flag1 = 1;
+            for (i = 0; i < (l / 2); i++) {
+                if (s[i] != '0') {
+                    flag1 = 0;
+                }
+            }
+            // To check the second half contains 1s
+            flag2 = 1;
+            for (i = l / 2; i < l; i++) {
+                if (s[i] != '1') {
+                    flag2 = 0;
+                }
+            }
+            if (flag1 == 1 && flag2 == 1) {
+                printf("Valid string: Satisfies the condition 0^n1^n\n");
+                printf("Valid string: Accepted\n");
+            } else {
+                printf("Valid string: Does not satisfy the condition 0^n1^n\n");
+                printf("Valid string: Not Accepted\n");
+            }
+        }
+    }
+}
